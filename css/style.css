@@ -1396,3 +1396,398 @@ button {
     justify-content: center;
   }
 }
+
+
+/* ============================================================
+   19. DARK THEME — CSS Variable Overrides
+       Applied via [data-theme="dark"] on <html>
+   ============================================================ */
+[data-theme="dark"] {
+  --white:         #121212;
+  --warm-bg:       #1A1A1A;
+  --charcoal:      #E0E0E0;
+  --charcoal-dark: #F5F5F5;
+  --gray-text:     #A0A0A0;
+  --gray-light:    #1E1E1E;
+  --border:        #2E2E2E;
+  --orange-light:  rgba(244,120,32,0.15);
+  --shadow-card:   0 4px 24px rgba(0,0,0,0.35);
+  --shadow-hover:  0 12px 40px rgba(244,120,32,0.22);
+  --shadow-nav:    0 2px 20px rgba(0,0,0,0.5);
+}
+
+/* Smooth transition for theme switch on all elements */
+[data-theme="dark"] *,
+html * {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease !important;
+}
+
+/* Override the global transition reset for animations that should stay fast */
+[data-theme="dark"] .btn,
+html .btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+
+/* ============================================================
+   20. DARK THEME — Body & Base
+   ============================================================ */
+[data-theme="dark"] body {
+  background: #121212;
+  color: #E0E0E0;
+}
+
+
+/* ============================================================
+   21. DARK THEME — Navigation
+   ============================================================ */
+[data-theme="dark"] .navbar.scrolled {
+  background: #1A1A1A;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .navbar.scrolled .nav-link {
+  color: #E0E0E0;
+}
+
+[data-theme="dark"] .navbar.scrolled .nav-link:hover {
+  color: var(--orange);
+  background: rgba(244,120,32,0.12);
+}
+
+[data-theme="dark"] .hamburger span {
+  background: #E0E0E0;
+}
+
+[data-theme="dark"] .navbar.scrolled .hamburger span {
+  background: #E0E0E0;
+}
+
+[data-theme="dark"] .mobile-menu {
+  background: #1A1A1A;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .mobile-link {
+  color: #E0E0E0;
+}
+
+[data-theme="dark"] .mobile-link:hover {
+  background: rgba(244,120,32,0.12);
+  color: var(--orange);
+}
+
+
+/* ============================================================
+   22. DARK THEME — Hero (mostly unchanged, already dark)
+   ============================================================ */
+[data-theme="dark"] .hero {
+  background-color: #0D0D0D;
+}
+
+[data-theme="dark"] .hero-badge {
+  background: rgba(244,120,32,0.18);
+  border-color: rgba(244,120,32,0.35);
+}
+
+
+/* ============================================================
+   23. DARK THEME — Features Section
+   ============================================================ */
+[data-theme="dark"] .features {
+  background: #1A1A1A;
+}
+
+[data-theme="dark"] .feature-card {
+  background: #252525;
+  border-color: #2E2E2E;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+
+[data-theme="dark"] .feature-card:hover {
+  border-top-color: var(--orange);
+  box-shadow: 0 12px 40px rgba(244,120,32,0.22);
+}
+
+[data-theme="dark"] .feature-card h3 {
+  color: #F0F0F0;
+}
+
+[data-theme="dark"] .feature-card p {
+  color: #A0A0A0;
+}
+
+
+/* ============================================================
+   24. DARK THEME — Menu Section
+   ============================================================ */
+[data-theme="dark"] .menu-section {
+  background: #121212;
+}
+
+[data-theme="dark"] .menu-tabs {
+  border-bottom-color: #2E2E2E;
+}
+
+[data-theme="dark"] .tab-btn {
+  color: #888888;
+}
+
+[data-theme="dark"] .tab-btn:hover {
+  color: var(--orange);
+}
+
+[data-theme="dark"] .tab-btn.active {
+  color: var(--orange);
+  border-bottom-color: var(--orange);
+}
+
+[data-theme="dark"] .menu-card {
+  background: #1E1E1E;
+  border-color: #2E2E2E;
+}
+
+[data-theme="dark"] .menu-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 12px 40px rgba(244,120,32,0.18);
+}
+
+[data-theme="dark"] .menu-card-name {
+  color: #F0F0F0;
+}
+
+[data-theme="dark"] .menu-card-desc {
+  color: #909090;
+}
+
+[data-theme="dark"] .menu-card--featured {
+  background: linear-gradient(135deg, #1E1A14 0%, #261A0D 100%);
+  border-color: var(--orange);
+}
+
+[data-theme="dark"] .section-title {
+  color: #F0F0F0;
+}
+
+[data-theme="dark"] .section-subtitle {
+  color: #909090;
+}
+
+
+/* ============================================================
+   25. DARK THEME — About Section
+   ============================================================ */
+[data-theme="dark"] .about-section {
+  background: #1A1A1A;
+}
+
+[data-theme="dark"] .about-text p {
+  color: #A0A0A0;
+}
+
+[data-theme="dark"] .about-stats {
+  border-top-color: #2E2E2E;
+}
+
+[data-theme="dark"] .stat-label {
+  color: #888888;
+}
+
+[data-theme="dark"] .about-shape-outer {
+  background: radial-gradient(circle at 40% 35%, rgba(244,120,32,0.18), transparent 65%);
+}
+
+
+/* ============================================================
+   26. DARK THEME — Gallery Section
+   ============================================================ */
+[data-theme="dark"] .gallery-section {
+  background: #121212;
+}
+
+[data-theme="dark"] .gallery-item {
+  filter: brightness(0.85);
+}
+
+[data-theme="dark"] .gallery-item:hover {
+  filter: brightness(1);
+}
+
+
+/* ============================================================
+   27. DARK THEME — Contact Section
+       (already dark charcoal, just deepen it slightly)
+   ============================================================ */
+[data-theme="dark"] .contact-section {
+  background: #0D0D0D;
+}
+
+[data-theme="dark"] .contact-icon {
+  background: rgba(244,120,32,0.12);
+  border-color: rgba(244,120,32,0.25);
+}
+
+[data-theme="dark"] .contact-map {
+  border-color: rgba(255,255,255,0.05);
+}
+
+
+/* ============================================================
+   28. DARK THEME — Footer
+   ============================================================ */
+[data-theme="dark"] .footer {
+  background: #0D0D0D;
+}
+
+[data-theme="dark"] .footer-bottom {
+  border-top-color: rgba(255,255,255,0.04);
+}
+
+[data-theme="dark"] .social-icon {
+  background: rgba(255,255,255,0.05);
+}
+
+[data-theme="dark"] .social-icon:hover {
+  background: var(--orange);
+}
+
+[data-theme="dark"] .footer-links a {
+  color: rgba(255,255,255,0.45);
+}
+
+[data-theme="dark"] .footer-links a:hover {
+  color: var(--orange);
+}
+
+
+/* ============================================================
+   29. DARK THEME — Logo image on dark nav (before scrolled)
+   ============================================================ */
+[data-theme="dark"] .logo-img {
+  filter: brightness(1.05);
+}
+
+
+/* ============================================================
+   30. THEME TOGGLE BUTTON
+   ============================================================ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 50px;
+  flex-shrink: 0;
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  transition: background 0.35s ease, border-color 0.35s ease;
+  overflow: hidden;
+}
+
+/* Track when nav is scrolled (light bg) */
+.navbar.scrolled .theme-toggle-track {
+  background: #F0F0F0;
+  border-color: #DCDCDC;
+}
+
+/* Track in dark mode */
+[data-theme="dark"] .theme-toggle-track {
+  background: rgba(244,120,32,0.25);
+  border-color: rgba(244,120,32,0.5);
+}
+
+[data-theme="dark"] .navbar.scrolled .theme-toggle-track {
+  background: rgba(244,120,32,0.2);
+  border-color: rgba(244,120,32,0.4);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease;
+}
+
+/* Slide thumb right in dark mode */
+[data-theme="dark"] .theme-toggle-thumb {
+  transform: translateX(24px);
+  background: var(--orange);
+}
+
+.theme-icon {
+  font-size: 0.7rem;
+  position: absolute;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.theme-icon--sun {
+  color: var(--orange);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.theme-icon--moon {
+  color: #FFFFFF;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* In dark mode: show moon, hide sun */
+[data-theme="dark"] .theme-icon--sun {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+[data-theme="dark"] .theme-icon--moon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover glow on toggle */
+.theme-toggle:hover .theme-toggle-track {
+  box-shadow: 0 0 0 3px rgba(244,120,32,0.2);
+}
+
+/* Mobile: keep toggle visible always */
+@media (max-width: 768px) {
+  .theme-toggle {
+    display: flex;
+  }
+
+  .theme-toggle-track {
+    width: 44px;
+    height: 24px;
+  }
+
+  .theme-toggle-thumb {
+    width: 18px;
+    height: 18px;
+  }
+
+  [data-theme="dark"] .theme-toggle-thumb {
+    transform: translateX(20px);
+  }
+}

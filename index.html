@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
+
   <!-- SEO Meta Tags -->
   <title>My Coffee | Your Perfect Cup, Every Time — Sri Lanka</title>
   <meta name="description" content="My Coffee (mycoffeelk) — Freshly crafted takeaway coffee in Sri Lanka. Hot, iced, or blended. Bold flavours, pocket-friendly prices. Order on WhatsApp." />
   <meta name="keywords" content="coffee Sri Lanka, takeaway coffee Colombo, mycoffeelk, best coffee Sri Lanka, iced coffee Sri Lanka, cold brew Colombo, espresso Sri Lanka" />
   <meta name="author" content="My Coffee" />
- 
+
   <!-- Open Graph -->
   <meta property="og:title" content="My Coffee — Your Perfect Cup, Every Time" />
   <meta property="og:description" content="Freshly crafted coffee made for Sri Lanka's pace of life. Hot, iced, or blended — we've got your order." />
@@ -17,31 +17,42 @@
   <!-- PLACEHOLDER: Replace og:image with actual photo -->
   <meta property="og:image" content="https://mycoffee.lk/og-image.jpg" />
   <meta property="og:url" content="https://mycoffee.lk" />
- 
+
   <!-- Google Fonts: Poppins + DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
- 
+
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
- 
+
   <!-- Site Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Anti-flash: apply saved theme BEFORE first paint to avoid flicker -->
+  <script>
+    (function() {
+      var saved  = localStorage.getItem('mycoffee-theme');
+      var system = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && system)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 </head>
 <body>
- 
+
   <!-- ============================================================
        SECTION 1: STICKY NAVIGATION BAR
   ============================================================ -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
- 
+
       <!-- Logo Image -->
       <a href="#home" class="nav-logo" aria-label="My Coffee Home">
         <img src="assets/my_coffee_logo.jpg" alt="My Coffee Logo" class="logo-img" />
       </a>
- 
+
       <!-- Desktop Nav Links -->
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link">Home</a></li>
@@ -50,20 +61,31 @@
         <li><a href="#gallery" class="nav-link">Gallery</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
- 
-      <!-- Order Now CTA + Hamburger -->
+
+      <!-- Order Now CTA + Theme Toggle + Hamburger -->
       <div class="nav-right">
         <!-- PLACEHOLDER: Replace WhatsApp number -->
         <a href="https://wa.me/94XXXXXXXXXX" class="btn btn-primary nav-cta" target="_blank" rel="noopener">Order Now</a>
+
+        <!-- Dark / Light Theme Toggle -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <span class="theme-toggle-track">
+            <span class="theme-toggle-thumb">
+              <i class="fa-solid fa-sun  theme-icon theme-icon--sun"></i>
+              <i class="fa-solid fa-moon theme-icon theme-icon--moon"></i>
+            </span>
+          </span>
+        </button>
+
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
         </button>
       </div>
- 
+
     </div>
- 
+
     <!-- Mobile Dropdown Menu -->
     <div class="mobile-menu" id="mobileMenu">
       <ul>
@@ -77,15 +99,15 @@
       </ul>
     </div>
   </nav>
- 
- 
+
+
   <!-- ============================================================
        SECTION 2: HERO
   ============================================================ -->
   <section class="hero" id="home">
     <div class="hero-bg-texture"></div>
     <div class="hero-container">
- 
+
       <!-- Left: Text Content -->
       <div class="hero-content">
         <div class="hero-badge animate-fade-up delay-1">☕ Freshly Crafted in Sri Lanka</div>
@@ -105,7 +127,7 @@
           </a>
         </div>
       </div>
- 
+
       <!-- Right: Decorative Cup Illustration -->
       <div class="hero-illustration animate-fade-up delay-3">
         <div class="hero-circle">
@@ -136,17 +158,17 @@
           </svg>
         </div>
       </div>
- 
+
     </div>
- 
+
     <!-- Scroll indicator -->
     <div class="hero-scroll-hint">
       <span>Scroll</span>
       <i class="fa-solid fa-chevron-down"></i>
     </div>
   </section>
- 
- 
+
+
   <!-- ============================================================
        SECTION 3: WHY MY COFFEE — FEATURE HIGHLIGHTS
   ============================================================ -->
@@ -156,38 +178,38 @@
         <h2 class="section-title">Why <span class="text-orange">My Coffee?</span></h2>
         <p class="section-subtitle">We keep it simple: great coffee, great people, great price.</p>
       </div>
- 
+
       <div class="features-grid">
- 
+
         <div class="feature-card animate-on-scroll">
           <div class="feature-icon">☕</div>
           <h3>Fresh Every Cup</h3>
           <p>Made to order, never sitting on a shelf</p>
         </div>
- 
+
         <div class="feature-card animate-on-scroll">
           <div class="feature-icon">🚀</div>
           <h3>Quick &amp; Ready</h3>
           <p>In your hands before your meeting starts</p>
         </div>
- 
+
         <div class="feature-card animate-on-scroll">
           <div class="feature-icon">💰</div>
           <h3>Pocket Friendly</h3>
           <p>Great coffee shouldn't cost a fortune</p>
         </div>
- 
+
         <div class="feature-card animate-on-scroll">
           <div class="feature-icon">🇱🇰</div>
           <h3>Made for Sri Lanka</h3>
           <p>Local flavours, global craft</p>
         </div>
- 
+
       </div>
     </div>
   </section>
- 
- 
+
+
   <!-- ============================================================
        SECTION 4: MENU
   ============================================================ -->
@@ -197,7 +219,7 @@
         <h2 class="section-title">Our <span class="text-orange">Menu</span></h2>
         <p class="section-subtitle">Every cup crafted to order. Pick your perfect one.</p>
       </div>
- 
+
       <!-- Tab Switcher -->
       <div class="menu-tabs animate-on-scroll" role="tablist">
         <button class="tab-btn active" data-tab="hot" role="tab" aria-selected="true">
@@ -210,11 +232,11 @@
           <i class="fa-solid fa-star"></i> Specials
         </button>
       </div>
- 
+
       <!-- HOT COFFEE TAB -->
       <div class="menu-tab-content active" id="tab-hot" role="tabpanel">
         <div class="menu-grid">
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">☕</div>
             <div class="menu-card-body">
@@ -223,7 +245,7 @@
               <span class="menu-card-price">Rs. 250</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">☕</div>
             <div class="menu-card-body">
@@ -232,7 +254,7 @@
               <span class="menu-card-price">Rs. 290</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">☕</div>
             <div class="menu-card-body">
@@ -241,7 +263,7 @@
               <span class="menu-card-price">Rs. 350</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">☕</div>
             <div class="menu-card-body">
@@ -250,7 +272,7 @@
               <span class="menu-card-price">Rs. 350</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">☕</div>
             <div class="menu-card-body">
@@ -259,7 +281,7 @@
               <span class="menu-card-price">Rs. 380</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">☕</div>
             <div class="menu-card-body">
@@ -268,14 +290,14 @@
               <span class="menu-card-price">Rs. 400</span>
             </div>
           </div>
- 
+
         </div>
       </div>
- 
+
       <!-- ICED COFFEE TAB -->
       <div class="menu-tab-content" id="tab-iced" role="tabpanel">
         <div class="menu-grid">
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🧊</div>
             <div class="menu-card-body">
@@ -284,7 +306,7 @@
               <span class="menu-card-price">Rs. 420</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🧊</div>
             <div class="menu-card-body">
@@ -293,7 +315,7 @@
               <span class="menu-card-price">Rs. 450</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🧊</div>
             <div class="menu-card-body">
@@ -302,7 +324,7 @@
               <span class="menu-card-price">Rs. 450</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🧊</div>
             <div class="menu-card-body">
@@ -311,7 +333,7 @@
               <span class="menu-card-price">Rs. 470</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🧊</div>
             <div class="menu-card-body">
@@ -320,14 +342,14 @@
               <span class="menu-card-price">Rs. 430</span>
             </div>
           </div>
- 
+
         </div>
       </div>
- 
+
       <!-- SPECIALS TAB -->
       <div class="menu-tab-content" id="tab-specials" role="tabpanel">
         <div class="menu-grid">
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🥥</div>
             <div class="menu-card-body">
@@ -336,7 +358,7 @@
               <span class="menu-card-price">Rs. 480</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🌿</div>
             <div class="menu-card-body">
@@ -345,7 +367,7 @@
               <span class="menu-card-price">Rs. 420</span>
             </div>
           </div>
- 
+
           <!-- "Today's Special" badge on My Coffee Special -->
           <div class="menu-card menu-card--featured animate-on-scroll">
             <div class="menu-ribbon">Today's Special</div>
@@ -356,7 +378,7 @@
               <span class="menu-card-price">Rs. 500</span>
             </div>
           </div>
- 
+
           <div class="menu-card animate-on-scroll">
             <div class="menu-card-icon">🍨</div>
             <div class="menu-card-body">
@@ -365,21 +387,21 @@
               <span class="menu-card-price">Rs. 490</span>
             </div>
           </div>
- 
+
         </div>
       </div>
- 
+
     </div>
   </section>
- 
- 
+
+
   <!-- ============================================================
        SECTION 5: ABOUT
   ============================================================ -->
   <section class="about-section section-padding" id="about">
     <div class="container">
       <div class="about-grid">
- 
+
         <!-- Left: Text -->
         <div class="about-text animate-on-scroll">
           <div class="about-accent-line"></div>
@@ -408,7 +430,7 @@
             </div>
           </div>
         </div>
- 
+
         <!-- Right: Decorative Visual -->
         <div class="about-visual animate-on-scroll">
           <div class="about-shape-outer">
@@ -442,12 +464,12 @@
             </div>
           </div>
         </div>
- 
+
       </div>
     </div>
   </section>
- 
- 
+
+
   <!-- ============================================================
        SECTION 6: GALLERY
   ============================================================ -->
@@ -457,51 +479,51 @@
         <h2 class="section-title">Coffee Worth <span class="text-orange">Staring At</span></h2>
         <p class="section-subtitle">Every cup tells a story. Here are a few of ours.</p>
       </div>
- 
+
       <div class="gallery-grid">
- 
+
         <!-- PLACEHOLDER: Replace background gradients with real coffee photos -->
         <div class="gallery-item gallery-item--tall animate-on-scroll" style="--g-from: #3d1c0c; --g-to: #8B4513;">
           <div class="gallery-overlay">
             <span class="gallery-label">Espresso Shot</span>
           </div>
         </div>
- 
+
         <div class="gallery-item animate-on-scroll" style="--g-from: #c17f24; --g-to: #f4a261;">
           <div class="gallery-overlay">
             <span class="gallery-label">Latte Art</span>
           </div>
         </div>
- 
+
         <div class="gallery-item animate-on-scroll" style="--g-from: #2C2C2C; --g-to: #5a3e28;">
           <div class="gallery-overlay">
             <span class="gallery-label">Cold Brew</span>
           </div>
         </div>
- 
+
         <div class="gallery-item animate-on-scroll" style="--g-from: #d4862a; --g-to: #f4c77e;">
           <div class="gallery-overlay">
             <span class="gallery-label">Caramel Latte</span>
           </div>
         </div>
- 
+
         <div class="gallery-item gallery-item--wide animate-on-scroll" style="--g-from: #1a5c3a; --g-to: #4caf80;">
           <div class="gallery-overlay">
             <span class="gallery-label">Iced Matcha</span>
           </div>
         </div>
- 
+
         <div class="gallery-item animate-on-scroll" style="--g-from: #4a2c1a; --g-to: #a0522d;">
           <div class="gallery-overlay">
             <span class="gallery-label">My Coffee Special</span>
           </div>
         </div>
- 
+
       </div>
     </div>
   </section>
- 
- 
+
+
   <!-- ============================================================
        SECTION 7: ORDER / CONTACT
   ============================================================ -->
@@ -511,12 +533,12 @@
         <h2 class="section-title" style="color:#FFFFFF;">Find <span class="text-orange">Us Here</span></h2>
         <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">Come visit us or order ahead — we're always ready.</p>
       </div>
- 
+
       <div class="contact-grid">
- 
+
         <!-- Left: Contact Info -->
         <div class="contact-info animate-on-scroll">
- 
+
           <div class="contact-item">
             <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div>
@@ -525,7 +547,7 @@
               <p>No. 45, Galle Road, Colombo 03, Sri Lanka</p>
             </div>
           </div>
- 
+
           <div class="contact-item">
             <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
             <div>
@@ -534,7 +556,7 @@
               <p>+94 XX XXX XXXX</p>
             </div>
           </div>
- 
+
           <div class="contact-item">
             <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
             <div>
@@ -543,7 +565,7 @@
               <p>hello@mycoffee.lk</p>
             </div>
           </div>
- 
+
           <div class="contact-item">
             <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
             <div>
@@ -552,16 +574,16 @@
               <p>Sun: 8:00 AM – 6:00 PM</p>
             </div>
           </div>
- 
+
           <!-- WhatsApp Order CTA -->
           <!-- PLACEHOLDER: Replace with real WhatsApp number -->
           <a href="https://wa.me/94XXXXXXXXXX" class="btn btn-whatsapp" target="_blank" rel="noopener">
             <i class="fa-brands fa-whatsapp"></i>
             Order on WhatsApp
           </a>
- 
+
         </div>
- 
+
         <!-- Right: Map Embed -->
         <div class="contact-map animate-on-scroll">
           <!-- PLACEHOLDER: Replace src with real Google Maps embed URL for actual location -->
@@ -576,12 +598,12 @@
             title="My Coffee location on Google Maps"
           ></iframe>
         </div>
- 
+
       </div>
     </div>
   </section>
- 
- 
+
+
   <!-- ============================================================
        SECTION 8: FLOATING WHATSAPP BUTTON
   ============================================================ -->
@@ -594,15 +616,15 @@
     <i class="fa-brands fa-whatsapp whatsapp-float-icon"></i>
     <span class="whatsapp-tooltip">Order on WhatsApp</span>
   </a>
- 
- 
+
+
   <!-- ============================================================
        SECTION 9: FOOTER
   ============================================================ -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
- 
+
         <!-- Brand Column -->
         <div class="footer-brand">
           <!-- Logo Image -->
@@ -612,7 +634,7 @@
           <p class="footer-tagline">Your Perfect Cup, Every Time</p>
           <p class="footer-desc">Freshly crafted coffee made for Sri Lanka's pace of life. Bold flavours, honest prices.</p>
         </div>
- 
+
         <!-- Quick Links -->
         <div class="footer-col">
           <h4 class="footer-col-title">Quick Links</h4>
@@ -623,7 +645,7 @@
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
- 
+
         <!-- Menu Links -->
         <div class="footer-col">
           <h4 class="footer-col-title">Menu</h4>
@@ -633,7 +655,7 @@
             <li><a href="#menu">Specials</a></li>
           </ul>
         </div>
- 
+
         <!-- Social -->
         <div class="footer-col">
           <h4 class="footer-col-title">Follow Us</h4>
@@ -652,10 +674,10 @@
           </div>
           <p class="footer-social-note">Tag us <strong>@mycoffeelk</strong><br>for a feature ☕</p>
         </div>
- 
+
       </div>
     </div>
- 
+
     <!-- Orange divider + Copyright bar -->
     <div class="footer-bottom">
       <div class="footer-divider"></div>
@@ -667,10 +689,10 @@
       </div>
     </div>
   </footer>
- 
- 
+
+
   <!-- Site JavaScript -->
   <script src="js/main.js"></script>
- 
+
 </body>
 </html>

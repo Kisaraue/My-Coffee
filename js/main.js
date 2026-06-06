@@ -1,7 +1,8 @@
 /* ============================================================
    MY COFFEE — main.js
    Brand: My Coffee (mycoffeelk) | Sri Lanka
-   Handles: Sticky nav, hamburger, menu tabs, scroll animations
+   Handles: Sticky nav, hamburger, menu tabs, scroll animations,
+            dark/light theme toggle
    ============================================================ */
 
 'use strict';
@@ -263,4 +264,83 @@
     `;
     document.head.appendChild(pulseStyle);
   }, 3500); // Start pulse after initial bounce finishes
+})();
+
+
+/* ============================================================
+   9. DARK / LIGHT THEME TOGGLE
+      - Reads saved preference from localStorage
+      - Falls back to system prefers-color-scheme on first visit
+      - Toggles data-theme="dark" on <html>
+      - Saves preference on every toggle
+   ============================================================ */
+(function initThemeToggle() {
+  const html        = document.documentElement;
+  const toggleBtn   = document.getElementById('themeToggle');
+  const STORAGE_KEY = 'mycoffee-theme';
+  const DARK        = 'dark';
+  const LIGHT       = 'light';
+
+  /* ----------------------------------------------------------
+     Determine initial theme:
+     1. Saved user preference in localStorage
+     2. System prefers-color-scheme
+     3. Default: light
+  ---------------------------------------------------------- */
+  function getInitialTheme() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === DARK || saved === LIGHT) return saved;
+
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return DARK;
+    }
+    return LIGHT;
+  }
+
+  /* ----------------------------------------------------------
+     Apply a theme to <html> and update button aria-label
+  ---------------------------------------------------------- */
+  function applyTheme(theme) {
+    if (theme === DARK) {
+      html.setAttribute('data-theme', DARK);
+      if (toggleBtn) toggleBtn.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      html.removeAttribute('data-theme');
+      if (toggleBtn) toggleBtn.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  }
+
+  /* ----------------------------------------------------------
+     Toggle between dark and light, save to localStorage
+  ---------------------------------------------------------- */
+  function toggleTheme() {
+    const current = html.getAttribute('data-theme') === DARK ? DARK : LIGHT;
+    const next    = current === DARK ? LIGHT : DARK;
+
+    applyTheme(next);
+    localStorage.setItem(STORAGE_KEY, next);
+  }
+
+  // Apply on page load immediately (before render to avoid flash)
+  applyTheme(getInitialTheme());
+
+  // Wire up the toggle button
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', toggleTheme);
+  }
+
+  /* ----------------------------------------------------------
+     Optional: respond to system theme changes in real-time
+     (only if user hasn't set a manual preference)
+  ---------------------------------------------------------- */
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      const savedPref = localStorage.getItem(STORAGE_KEY);
+      if (!savedPref) {
+        // No manual preference saved — follow the system
+        applyTheme(e.matches ? DARK : LIGHT);
+      }
+    });
+  }
 })();
