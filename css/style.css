@@ -1483,7 +1483,9 @@ html .btn {
 
 
 /* ============================================================
-   22. DARK THEME — Hero (mostly unchanged, already dark)
+   22. DARK THEME — Hero
+   Hero is already a dark section, so most text must stay
+   explicitly white regardless of the --white variable override.
    ============================================================ */
 [data-theme="dark"] .hero {
   background-color: #0D0D0D;
@@ -1492,6 +1494,37 @@ html .btn {
 [data-theme="dark"] .hero-badge {
   background: rgba(244,120,32,0.18);
   border-color: rgba(244,120,32,0.35);
+}
+
+/* Heading must stay white — --white is now #121212 in dark mode */
+[data-theme="dark"] .hero-heading {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .hero-heading em {
+  color: var(--orange);
+}
+
+/* Subtext stays readable white */
+[data-theme="dark"] .hero-subtext {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* "Order on WhatsApp" outline button — border and text must stay white */
+[data-theme="dark"] .btn-outline-white {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .btn-outline-white:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #FFFFFF;
+}
+
+/* Scroll hint */
+[data-theme="dark"] .hero-scroll-hint {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 
@@ -1620,10 +1653,25 @@ html .btn {
 
 /* ============================================================
    27. DARK THEME — Contact Section
-       (already dark charcoal, just deepen it slightly)
    ============================================================ */
 [data-theme="dark"] .contact-section {
   background: #0D0D0D;
+}
+
+[data-theme="dark"] .contact-section .section-title {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .contact-section .section-subtitle {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="dark"] .contact-item h4 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .contact-item p {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 [data-theme="dark"] .contact-icon {
@@ -1635,40 +1683,89 @@ html .btn {
   border-color: rgba(255,255,255,0.05);
 }
 
+/* WhatsApp CTA button text must stay white */
+[data-theme="dark"] .btn-whatsapp {
+  color: #FFFFFF;
+}
+
 
 /* ============================================================
    28. DARK THEME — Footer
+   Footer is already a near-black section. The issue is
+   --white gets overridden to #121212, making titles invisible.
+   Force all footer text back to explicit white values.
    ============================================================ */
 [data-theme="dark"] .footer {
   background: #0D0D0D;
 }
 
-[data-theme="dark"] .footer-bottom {
-  border-top-color: rgba(255,255,255,0.04);
+/* Column headings: Quick Links, Menu, Follow Us */
+[data-theme="dark"] .footer-col-title {
+  color: #FFFFFF;
 }
 
-[data-theme="dark"] .social-icon {
-  background: rgba(255,255,255,0.05);
-}
-
-[data-theme="dark"] .social-icon:hover {
-  background: var(--orange);
-}
-
+/* Footer link items */
 [data-theme="dark"] .footer-links a {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 [data-theme="dark"] .footer-links a:hover {
   color: var(--orange);
 }
 
+/* Footer brand description text */
+[data-theme="dark"] .footer-desc {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Social note */
+[data-theme="dark"] .footer-social-note {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Social icons */
+[data-theme="dark"] .social-icon {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme="dark"] .social-icon:hover {
+  background: var(--orange);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .social-icon--wa:hover {
+  background: var(--wa-green);
+}
+
+/* Copyright bar */
+[data-theme="dark"] .footer-copy {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="dark"] .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.04);
+}
+
 
 /* ============================================================
-   29. DARK THEME — Logo image on dark nav (before scrolled)
+   29. DARK THEME — Logo & Floating WhatsApp
    ============================================================ */
 [data-theme="dark"] .logo-img {
   filter: brightness(1.05);
+}
+
+[data-theme="dark"] .whatsapp-float-icon {
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .whatsapp-tooltip {
+  background: #2A2A2A;
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .whatsapp-tooltip::after {
+  border-left-color: #2A2A2A;
 }
 
 
