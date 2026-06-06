@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>My Coffee | Your Perfect Cup, Every Time — Sri Lanka</title>
+  <meta name="description" content="My Coffee (mycoffeelk) — Freshly crafted takeaway coffee in Sri Lanka. Hot, iced, or blended. Bold flavours, pocket-friendly prices. Order on WhatsApp." />
+  <meta name="keywords" content="coffee Sri Lanka, takeaway coffee Colombo, mycoffeelk, best coffee Sri Lanka, iced coffee Sri Lanka, cold brew Colombo, espresso Sri Lanka" />
+  <meta name="author" content="My Coffee" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="My Coffee — Your Perfect Cup, Every Time" />
+  <meta property="og:description" content="Freshly crafted coffee made for Sri Lanka's pace of life. Hot, iced, or blended — we've got your order." />
+  <meta property="og:type" content="website" />
+  <!-- PLACEHOLDER: Replace og:image with actual photo -->
+  <meta property="og:image" content="https://mycoffee.lk/og-image.jpg" />
+  <meta property="og:url" content="https://mycoffee.lk" />
+
+  <!-- Google Fonts: Poppins + DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,800;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Site Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1: STICKY NAVIGATION BAR
+  ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo SVG -->
+      <a href="#home" class="nav-logo" aria-label="My Coffee Home">
+        <!-- Inline SVG Logo: Bold orange MY lettermark with takeaway cup in Y -->
+        <svg class="logo-svg" viewBox="0 0 120 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- M letter -->
+          <path d="M4 44 L4 14 L16 14 L24 30 L32 14 L44 14 L44 44 L36 44 L36 24 L28 40 L20 40 L12 24 L12 44 Z" fill="#F47820"/>
+          <!-- Y letter: two arms meeting at center, then cup as stem -->
+          <path d="M52 14 L62 28 L72 14 L80 14 L66 34 L66 36 Z" fill="#F47820"/>
+          <!-- Cup body (replaces Y stem/descender) -->
+          <rect x="59" y="36" width="14" height="10" rx="2" fill="#F47820"/>
+          <!-- Cup lid -->
+          <rect x="57" y="33" width="18" height="4" rx="2" fill="#D4620F"/>
+          <!-- Cup bottom taper -->
+          <path d="M60 46 L62 50 L70 50 L72 46 Z" fill="#D4620F"/>
+          <!-- Steam wisps -->
+          <path d="M63 30 Q61 27 63 24 Q65 21 63 18" stroke="#F47820" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <path d="M67 30 Q65 27 67 24 Q69 21 67 18" stroke="#F47820" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <!-- COFFEE wordmark -->
+          <text x="4" y="56" font-family="Poppins, sans-serif" font-weight="700" font-size="9" fill="#4A4A4A" letter-spacing="3">COFFEE</text>
+        </svg>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <!-- Order Now CTA + Hamburger -->
+      <div class="nav-right">
+        <!-- PLACEHOLDER: Replace WhatsApp number -->
+        <a href="https://wa.me/94XXXXXXXXXX" class="btn btn-primary nav-cta" target="_blank" rel="noopener">Order Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#home" class="mobile-link">Home</a></li>
+        <li><a href="#menu" class="mobile-link">Menu</a></li>
+        <li><a href="#about" class="mobile-link">About</a></li>
+        <li><a href="#gallery" class="mobile-link">Gallery</a></li>
+        <li><a href="#contact" class="mobile-link">Contact</a></li>
+        <!-- PLACEHOLDER: Replace WhatsApp number -->
+        <li><a href="https://wa.me/94XXXXXXXXXX" class="mobile-link mobile-cta" target="_blank" rel="noopener">Order on WhatsApp</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       SECTION 2: HERO
+  ============================================================ -->
+  <section class="hero" id="home">
+    <div class="hero-bg-texture"></div>
+    <div class="hero-container">
+
+      <!-- Left: Text Content -->
+      <div class="hero-content">
+        <div class="hero-badge animate-fade-up delay-1">☕ Freshly Crafted in Sri Lanka</div>
+        <h1 class="hero-heading animate-fade-up delay-2">
+          Your Perfect Cup,<br>
+          <em>Every Time</em>
+        </h1>
+        <p class="hero-subtext animate-fade-up delay-3">
+          Freshly crafted coffee made for Sri Lanka's pace of life.<br>
+          Hot, iced, or blended — we've got your order.
+        </p>
+        <div class="hero-buttons animate-fade-up delay-4">
+          <a href="#menu" class="btn btn-primary">View Our Menu</a>
+          <!-- PLACEHOLDER: Replace WhatsApp number -->
+          <a href="https://wa.me/94XXXXXXXXXX" class="btn btn-outline-white" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Decorative Cup Illustration -->
+      <div class="hero-illustration animate-fade-up delay-3">
+        <div class="hero-circle">
+          <!-- SVG Takeaway Cup Illustration -->
+          <svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg" class="cup-svg" aria-hidden="true">
+            <!-- Cup body -->
+            <path d="M30 60 L150 60 L135 190 L45 190 Z" fill="#FFFFFF" opacity="0.15" rx="4"/>
+            <path d="M30 60 L150 60 L135 190 L45 190 Z" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.6"/>
+            <!-- Cup lid -->
+            <rect x="20" y="44" width="140" height="20" rx="10" fill="#FFFFFF" opacity="0.9"/>
+            <!-- Lid dome -->
+            <ellipse cx="90" cy="44" rx="50" ry="12" fill="#FFFFFF" opacity="0.9"/>
+            <!-- Drink hole in lid -->
+            <rect x="76" y="30" width="28" height="14" rx="7" fill="#F47820"/>
+            <!-- Straw -->
+            <rect x="85" y="0" width="10" height="45" rx="5" fill="#FFFFFF" opacity="0.8"/>
+            <!-- Cup sleeve -->
+            <path d="M38 110 L142 110 L138 145 L42 145 Z" fill="#F47820" opacity="0.4"/>
+            <!-- MY COFFEE text on cup -->
+            <text x="90" y="88" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800" font-size="13" fill="#FFFFFF" opacity="0.9">MY</text>
+            <text x="90" y="103" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600" font-size="8" fill="#FFFFFF" opacity="0.7" letter-spacing="2">COFFEE</text>
+            <!-- Steam lines -->
+            <path d="M60 28 Q55 18 60 8" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <path d="M90 22 Q85 12 90 2" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <path d="M120 28 Q115 18 120 8" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- Bottom base -->
+            <ellipse cx="90" cy="190" rx="47" ry="8" fill="#FFFFFF" opacity="0.1"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 3: WHY MY COFFEE — FEATURE HIGHLIGHTS
+  ============================================================ -->
+  <section class="features section-padding" id="features">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Why <span class="text-orange">My Coffee?</span></h2>
+        <p class="section-subtitle">We keep it simple: great coffee, great people, great price.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">☕</div>
+          <h3>Fresh Every Cup</h3>
+          <p>Made to order, never sitting on a shelf</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">🚀</div>
+          <h3>Quick &amp; Ready</h3>
+          <p>In your hands before your meeting starts</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">💰</div>
+          <h3>Pocket Friendly</h3>
+          <p>Great coffee shouldn't cost a fortune</p>
+        </div>
+
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">🇱🇰</div>
+          <h3>Made for Sri Lanka</h3>
+          <p>Local flavours, global craft</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 4: MENU
+  ============================================================ -->
+  <section class="menu-section section-padding" id="menu">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Our <span class="text-orange">Menu</span></h2>
+        <p class="section-subtitle">Every cup crafted to order. Pick your perfect one.</p>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="menu-tabs animate-on-scroll" role="tablist">
+        <button class="tab-btn active" data-tab="hot" role="tab" aria-selected="true">
+          <i class="fa-solid fa-mug-hot"></i> Hot Coffee
+        </button>
+        <button class="tab-btn" data-tab="iced" role="tab" aria-selected="false">
+          <i class="fa-solid fa-ice-cream"></i> Iced Coffee
+        </button>
+        <button class="tab-btn" data-tab="specials" role="tab" aria-selected="false">
+          <i class="fa-solid fa-star"></i> Specials
+        </button>
+      </div>
+
+      <!-- HOT COFFEE TAB -->
+      <div class="menu-tab-content active" id="tab-hot" role="tabpanel">
+        <div class="menu-grid">
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">☕</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Espresso</h3>
+              <p class="menu-card-desc">Bold single shot, pure and powerful</p>
+              <span class="menu-card-price">Rs. 250</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">☕</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Americano</h3>
+              <p class="menu-card-desc">Espresso with hot water, smooth and clean</p>
+              <span class="menu-card-price">Rs. 290</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">☕</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Flat White</h3>
+              <p class="menu-card-desc">Velvety microfoam over a double shot</p>
+              <span class="menu-card-price">Rs. 350</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">☕</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Cappuccino</h3>
+              <p class="menu-card-desc">Equal parts espresso, steam, and foam</p>
+              <span class="menu-card-price">Rs. 350</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">☕</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Latte</h3>
+              <p class="menu-card-desc">Creamy and smooth, perfect any time of day</p>
+              <span class="menu-card-price">Rs. 380</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">☕</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Mocha</h3>
+              <p class="menu-card-desc">Chocolate meets espresso in the best way</p>
+              <span class="menu-card-price">Rs. 400</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ICED COFFEE TAB -->
+      <div class="menu-tab-content" id="tab-iced" role="tabpanel">
+        <div class="menu-grid">
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🧊</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Iced Latte</h3>
+              <p class="menu-card-desc">Chilled espresso in cold milk over ice</p>
+              <span class="menu-card-price">Rs. 420</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🧊</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Cold Brew</h3>
+              <p class="menu-card-desc">Slow-steeped for 12 hours, never bitter</p>
+              <span class="menu-card-price">Rs. 450</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🧊</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Iced Mocha</h3>
+              <p class="menu-card-desc">Chocolate, espresso, cold milk, ice</p>
+              <span class="menu-card-price">Rs. 450</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🧊</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Iced Caramel Latte</h3>
+              <p class="menu-card-desc">Sweet, creamy, and dangerously good</p>
+              <span class="menu-card-price">Rs. 470</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🧊</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Iced Matcha Latte</h3>
+              <p class="menu-card-desc">Japanese matcha meets cold milk</p>
+              <span class="menu-card-price">Rs. 430</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SPECIALS TAB -->
+      <div class="menu-tab-content" id="tab-specials" role="tabpanel">
+        <div class="menu-grid">
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🥥</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Coconut Cold Brew</h3>
+              <p class="menu-card-desc">Cold brew with fresh coconut milk — Sri Lankan twist</p>
+              <span class="menu-card-price">Rs. 480</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🌿</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Spiced Latte</h3>
+              <p class="menu-card-desc">Ceylon cinnamon and cardamom warm latte</p>
+              <span class="menu-card-price">Rs. 420</span>
+            </div>
+          </div>
+
+          <!-- "Today's Special" badge on My Coffee Special -->
+          <div class="menu-card menu-card--featured animate-on-scroll">
+            <div class="menu-ribbon">Today's Special</div>
+            <div class="menu-card-icon">⭐</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">My Coffee Special</h3>
+              <p class="menu-card-desc">The house blend you'll keep coming back for</p>
+              <span class="menu-card-price">Rs. 500</span>
+            </div>
+          </div>
+
+          <div class="menu-card animate-on-scroll">
+            <div class="menu-card-icon">🍨</div>
+            <div class="menu-card-body">
+              <h3 class="menu-card-name">Affogato</h3>
+              <p class="menu-card-desc">Vanilla ice cream drowned in hot espresso</p>
+              <span class="menu-card-price">Rs. 490</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 5: ABOUT
+  ============================================================ -->
+  <section class="about-section section-padding" id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: Text -->
+        <div class="about-text animate-on-scroll">
+          <div class="about-accent-line"></div>
+          <h2 class="section-title">A Cup Made<br><span class="text-orange">With Intention</span></h2>
+          <p>
+            My Coffee started with one simple belief — that great coffee should be accessible
+            to everyone. No pretension, no complicated orders. Just honest, freshly crafted
+            coffee that fits your life.
+          </p>
+          <p>
+            Whether you're rushing to work, catching up with a friend, or just need a quiet
+            moment — My Coffee is here for it. Proudly crafted in Sri Lanka, for Sri Lanka.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Fresh &amp; Made to Order</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">15+</span>
+              <span class="stat-label">Drinks on the Menu</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">🇱🇰</span>
+              <span class="stat-label">Proudly Sri Lankan</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Decorative Visual -->
+        <div class="about-visual animate-on-scroll">
+          <div class="about-shape-outer">
+            <div class="about-shape-inner">
+              <!-- Abstract decorative SVG -->
+              <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" class="about-svg" aria-hidden="true">
+                <!-- Background circle -->
+                <circle cx="150" cy="150" r="130" fill="#FFF8F3"/>
+                <!-- Coffee ring decorations -->
+                <circle cx="150" cy="150" r="100" fill="none" stroke="#F47820" stroke-width="2" opacity="0.3" stroke-dasharray="8 6"/>
+                <circle cx="150" cy="150" r="70" fill="none" stroke="#F47820" stroke-width="1.5" opacity="0.2"/>
+                <!-- Central cup shape -->
+                <path d="M110 120 L190 120 L180 210 L120 210 Z" fill="#F47820" opacity="0.15"/>
+                <path d="M110 120 L190 120 L180 210 L120 210 Z" fill="none" stroke="#F47820" stroke-width="3" opacity="0.7"/>
+                <!-- Lid -->
+                <rect x="100" y="105" width="100" height="18" rx="9" fill="#F47820" opacity="0.8"/>
+                <!-- Straw -->
+                <rect x="143" y="68" width="8" height="40" rx="4" fill="#F47820" opacity="0.6"/>
+                <!-- Steam -->
+                <path d="M120 95 Q114 78 120 62" stroke="#F47820" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+                <path d="M150 90 Q144 73 150 57" stroke="#F47820" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+                <path d="M180 95 Q174 78 180 62" stroke="#F47820" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+                <!-- Sleeve band -->
+                <path d="M115 155 L185 155 L182 175 L118 175 Z" fill="#D4620F" opacity="0.3"/>
+                <!-- Dots decoration -->
+                <circle cx="60" cy="80" r="8" fill="#F47820" opacity="0.2"/>
+                <circle cx="240" cy="90" r="12" fill="#F47820" opacity="0.15"/>
+                <circle cx="50" cy="200" r="6" fill="#F47820" opacity="0.2"/>
+                <circle cx="250" cy="210" r="9" fill="#F47820" opacity="0.15"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 6: GALLERY
+  ============================================================ -->
+  <section class="gallery-section section-padding" id="gallery">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Coffee Worth <span class="text-orange">Staring At</span></h2>
+        <p class="section-subtitle">Every cup tells a story. Here are a few of ours.</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <!-- PLACEHOLDER: Replace background gradients with real coffee photos -->
+        <div class="gallery-item gallery-item--tall animate-on-scroll" style="--g-from: #3d1c0c; --g-to: #8B4513;">
+          <div class="gallery-overlay">
+            <span class="gallery-label">Espresso Shot</span>
+          </div>
+        </div>
+
+        <div class="gallery-item animate-on-scroll" style="--g-from: #c17f24; --g-to: #f4a261;">
+          <div class="gallery-overlay">
+            <span class="gallery-label">Latte Art</span>
+          </div>
+        </div>
+
+        <div class="gallery-item animate-on-scroll" style="--g-from: #2C2C2C; --g-to: #5a3e28;">
+          <div class="gallery-overlay">
+            <span class="gallery-label">Cold Brew</span>
+          </div>
+        </div>
+
+        <div class="gallery-item animate-on-scroll" style="--g-from: #d4862a; --g-to: #f4c77e;">
+          <div class="gallery-overlay">
+            <span class="gallery-label">Caramel Latte</span>
+          </div>
+        </div>
+
+        <div class="gallery-item gallery-item--wide animate-on-scroll" style="--g-from: #1a5c3a; --g-to: #4caf80;">
+          <div class="gallery-overlay">
+            <span class="gallery-label">Iced Matcha</span>
+          </div>
+        </div>
+
+        <div class="gallery-item animate-on-scroll" style="--g-from: #4a2c1a; --g-to: #a0522d;">
+          <div class="gallery-overlay">
+            <span class="gallery-label">My Coffee Special</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 7: ORDER / CONTACT
+  ============================================================ -->
+  <section class="contact-section section-padding" id="contact">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title" style="color:#FFFFFF;">Find <span class="text-orange">Us Here</span></h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">Come visit us or order ahead — we're always ready.</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Left: Contact Info -->
+        <div class="contact-info animate-on-scroll">
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h4>Our Location</h4>
+              <!-- PLACEHOLDER: Replace with real address -->
+              <p>No. 45, Galle Road, Colombo 03, Sri Lanka</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <h4>Call Us</h4>
+              <!-- PLACEHOLDER: Replace with real phone number -->
+              <p>+94 XX XXX XXXX</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <h4>Email</h4>
+              <!-- PLACEHOLDER: Replace with real email if different -->
+              <p>hello@mycoffee.lk</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <h4>Opening Hours</h4>
+              <p>Mon – Sat: 7:00 AM – 8:00 PM</p>
+              <p>Sun: 8:00 AM – 6:00 PM</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp Order CTA -->
+          <!-- PLACEHOLDER: Replace with real WhatsApp number -->
+          <a href="https://wa.me/94XXXXXXXXXX" class="btn btn-whatsapp" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+            Order on WhatsApp
+          </a>
+
+        </div>
+
+        <!-- Right: Map Embed -->
+        <div class="contact-map animate-on-scroll">
+          <!-- PLACEHOLDER: Replace src with real Google Maps embed URL for actual location -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.8476695060256!2d79.84878127573896!3d6.912118918448038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25951f98e7317%3A0xba2f3c52754bce5!2sGalle%20Rd%2C%20Colombo!5e0!3m2!1sen!2slk!4v1702000000000!5m2!1sen!2slk"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="My Coffee location on Google Maps"
+          ></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8: FLOATING WHATSAPP BUTTON
+  ============================================================ -->
+  <!-- PLACEHOLDER: Replace with real WhatsApp number -->
+  <a href="https://wa.me/94XXXXXXXXXX"
+     class="whatsapp-float"
+     target="_blank"
+     rel="noopener"
+     aria-label="Order on WhatsApp">
+    <i class="fa-brands fa-whatsapp whatsapp-float-icon"></i>
+    <span class="whatsapp-tooltip">Order on WhatsApp</span>
+  </a>
+
+
+  <!-- ============================================================
+       SECTION 9: FOOTER
+  ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <!-- Logo SVG (same as nav) -->
+          <a href="#home" class="footer-logo" aria-label="My Coffee">
+            <svg class="logo-svg logo-svg--light" viewBox="0 0 120 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 44 L4 14 L16 14 L24 30 L32 14 L44 14 L44 44 L36 44 L36 24 L28 40 L20 40 L12 24 L12 44 Z" fill="#F47820"/>
+              <path d="M52 14 L62 28 L72 14 L80 14 L66 34 L66 36 Z" fill="#F47820"/>
+              <rect x="59" y="36" width="14" height="10" rx="2" fill="#F47820"/>
+              <rect x="57" y="33" width="18" height="4" rx="2" fill="#D4620F"/>
+              <path d="M60 46 L62 50 L70 50 L72 46 Z" fill="#D4620F"/>
+              <path d="M63 30 Q61 27 63 24 Q65 21 63 18" stroke="#F47820" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+              <path d="M67 30 Q65 27 67 24 Q69 21 67 18" stroke="#F47820" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.5"/>
+              <text x="4" y="56" font-family="Poppins, sans-serif" font-weight="700" font-size="9" fill="#FFFFFF" letter-spacing="3">COFFEE</text>
+            </svg>
+          </a>
+          <p class="footer-tagline">Your Perfect Cup, Every Time</p>
+          <p class="footer-desc">Freshly crafted coffee made for Sri Lanka's pace of life. Bold flavours, honest prices.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Menu Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Menu</h4>
+          <ul class="footer-links">
+            <li><a href="#menu">Hot Coffee</a></li>
+            <li><a href="#menu">Iced Coffee</a></li>
+            <li><a href="#menu">Specials</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Follow Us</h4>
+          <div class="footer-socials">
+            <!-- PLACEHOLDER: Update Facebook/Instagram URLs -->
+            <a href="https://www.facebook.com/mycoffeelk" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/mycoffeelk" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!-- PLACEHOLDER: Replace WhatsApp number -->
+            <a href="https://wa.me/94XXXXXXXXXX" class="social-icon social-icon--wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+          <p class="footer-social-note">Tag us <strong>@mycoffeelk</strong><br>for a feature ☕</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Orange divider + Copyright bar -->
+    <div class="footer-bottom">
+      <div class="footer-divider"></div>
+      <div class="container">
+        <p class="footer-copy">
+          &copy; 2025 My Coffee. All rights reserved.
+          &nbsp;|&nbsp; Made with ☕ in Sri Lanka
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Site JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
