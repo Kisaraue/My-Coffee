@@ -180,15 +180,27 @@ button {
 }
 
 /* ============================================================
-   5. LOGO SVG SIZING
+   5. LOGO IMAGE SIZING
    ============================================================ */
-.logo-svg {
-  width: 90px;
-  height: auto;
+.logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 6px;
+  transition: opacity 0.3s ease;
 }
 
-.logo-svg--light text {
-  fill: rgba(255,255,255,0.85);
+.logo-img:hover {
+  opacity: 0.88;
+}
+
+/* Footer logo — larger, mix-blend-mode so JPG white bg
+   disappears naturally on the dark footer background */
+.logo-img--footer {
+  height: 64px;
+  border-radius: 8px;
+  mix-blend-mode: lighten;
 }
 
 
