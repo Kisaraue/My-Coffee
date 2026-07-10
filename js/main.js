@@ -529,26 +529,29 @@ function loadFeedbackReviews() {
 
 /* ============================================================
    13. FEEDBACK — submit new review
+   Runs after DOM is ready so star elements exist
    ============================================================ */
-(function initFeedbackForm() {
-  var starEls    = document.querySelectorAll('.star');
-  var ratingInput= document.getElementById('ratingValue');
-  var nameInput  = document.getElementById('feedbackName');
-  var msgInput   = document.getElementById('feedbackMessage');
-  var submitBtn  = document.getElementById('feedbackSubmitBtn');
-  var statusEl   = document.getElementById('feedbackStatus');
+document.addEventListener('DOMContentLoaded', function () {
 
+  var starEls       = document.querySelectorAll('.star');
+  var ratingInput   = document.getElementById('ratingValue');
+  var nameInput     = document.getElementById('feedbackName');
+  var msgInput      = document.getElementById('feedbackMessage');
+  var submitBtn     = document.getElementById('feedbackSubmitBtn');
+  var statusEl      = document.getElementById('feedbackStatus');
   var selectedRating = 0;
 
-  // Star interaction
+  if (!starEls.length) return; // feedback section not on this page
+
+  /* ------ Star hover & click -------------------------------- */
   starEls.forEach(function (star) {
+
     star.addEventListener('mouseover', function () {
-      var val = parseInt(star.getAttribute('data-value'));
-      highlightStars(val);
+      highlightStars(parseInt(star.getAttribute('data-value')));
     });
 
     star.addEventListener('mouseout', function () {
-      highlightStars(selectedRating);
+      highlightStars(selectedRating); // revert to selected
     });
 
     star.addEventListener('click', function () {
@@ -557,6 +560,7 @@ function loadFeedbackReviews() {
       highlightStars(selectedRating);
     });
 
+    // Keyboard support
     star.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -570,33 +574,36 @@ function loadFeedbackReviews() {
   function highlightStars(count) {
     starEls.forEach(function (s) {
       var val = parseInt(s.getAttribute('data-value'));
-      s.classList.toggle('selected', val <= count);
-      s.classList.toggle('hovered', val <= count);
+      if (val <= count) {
+        s.classList.add('selected');
+      } else {
+        s.classList.remove('selected');
+      }
     });
   }
 
-  // Submit
+  /* ------ Form submit --------------------------------------- */
   if (submitBtn) {
     submitBtn.addEventListener('click', function () {
       var client = window._supabase;
 
       if (!client) {
-        setStatus('Supabase not configured yet. Add your credentials to index.html.', 'error');
+        setStatus('Database not connected. Check your Supabase credentials.', 'error');
         return;
       }
 
-      var name    = nameInput  ? nameInput.value.trim()  : '';
-      var message = msgInput   ? msgInput.value.trim()   : '';
+      var name    = nameInput ? nameInput.value.trim()  : '';
+      var message = msgInput  ? msgInput.value.trim()   : '';
       var rating  = selectedRating;
 
       // Validation
-      if (!name)    { setStatus('Please enter your name.', 'error'); nameInput.focus(); return; }
-      if (!rating)  { setStatus('Please select a star rating.', 'error'); return; }
-      if (!message) { setStatus('Please write a review message.', 'error'); msgInput.focus(); return; }
-      if (message.length < 10) { setStatus('Your review is too short (min 10 characters).', 'error'); return; }
+      if (!name)           { setStatus('Please enter your name.', 'error');           nameInput.focus(); return; }
+      if (!rating)         { setStatus('Please select a star rating.', 'error');      return; }
+      if (!message)        { setStatus('Please write a review message.', 'error');    msgInput.focus();  return; }
+      if (message.length < 10) { setStatus('Review too short (min 10 characters).', 'error'); return; }
 
-      submitBtn.disabled   = true;
-      submitBtn.innerHTML  = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+      submitBtn.disabled  = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
       setStatus('', '');
 
       client
@@ -607,15 +614,16 @@ function loadFeedbackReviews() {
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Review';
 
           if (result.error) {
+            console.error('Feedback submit error:', result.error);
             setStatus('Something went wrong. Please try again.', 'error');
             return;
           }
 
           // Success — reset form
           setStatus('✅ Thank you! Your review is pending approval.', 'success');
-          nameInput.value  = '';
-          msgInput.value   = '';
-          selectedRating   = 0;
+          nameInput.value = '';
+          msgInput.value  = '';
+          selectedRating  = 0;
           if (ratingInput) ratingInput.value = 0;
           highlightStars(0);
         });
@@ -624,10 +632,11 @@ function loadFeedbackReviews() {
 
   function setStatus(msg, type) {
     if (!statusEl) return;
-    statusEl.textContent  = msg;
-    statusEl.className    = 'feedback-status' + (type ? ' ' + type : '');
+    statusEl.textContent = msg;
+    statusEl.className   = 'feedback-status' + (type ? ' ' + type : '');
   }
-})();
+
+}); // end DOMContentLoaded
 
 
 /* ============================================================
