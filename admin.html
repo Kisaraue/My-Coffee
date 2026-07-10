@@ -18,26 +18,56 @@
 <body>
 
   <!-- ========================================================
-       LOGIN GATE
+       LOGIN SCREEN — Supabase email/password auth
   ======================================================== -->
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
       <img src="assets/my_coffee.jpg" alt="My Coffee" class="login-logo" />
       <h1 class="login-title">Admin Dashboard</h1>
-      <p class="login-sub">Enter the admin password to continue</p>
+      <p class="login-sub">Sign in with your admin account</p>
+
       <div class="login-field">
-        <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" />
+        <label class="login-label">Email</label>
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="admin@mycoffee.lk"
+          autocomplete="email"
+          inputmode="email"
+        />
       </div>
+
+      <div class="login-field">
+        <label class="login-label">Password</label>
+        <div class="login-password-wrap">
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="••••••••••"
+            autocomplete="current-password"
+          />
+          <button class="login-eye" id="togglePasswordBtn" type="button" aria-label="Show password">
+            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+          </button>
+        </div>
+      </div>
+
       <button class="admin-btn admin-btn--primary login-submit" id="loginSubmitBtn">
-        <i class="fa-solid fa-lock"></i> Sign In
+        <i class="fa-solid fa-right-to-bracket"></i> Sign In
       </button>
-      <p class="login-error" id="loginError"></p>
+
+      <p class="login-error hidden" id="loginError"></p>
+
+      <p class="login-footer-note">
+        <i class="fa-solid fa-shield-halved"></i>
+        Secured by Supabase Auth
+      </p>
     </div>
   </div>
 
 
   <!-- ========================================================
-       ADMIN APP (hidden until logged in)
+       ADMIN APP — shown only when session is valid
   ======================================================== -->
   <div class="admin-app hidden" id="adminApp">
 
@@ -61,11 +91,16 @@
       </nav>
 
       <div class="sidebar-footer">
+        <!-- Logged-in user email display -->
+        <div class="sidebar-user" id="sidebarUser">
+          <i class="fa-solid fa-circle-user"></i>
+          <span id="sidebarUserEmail">...</span>
+        </div>
         <a href="index.html" class="sidebar-link sidebar-link--small" target="_blank">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> View Site
         </a>
-        <button class="sidebar-link sidebar-link--small" id="logoutBtn">
-          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        <button class="sidebar-link sidebar-link--small sidebar-link--danger" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Sign Out
         </button>
       </div>
     </aside>
@@ -110,7 +145,9 @@
               </tr>
             </thead>
             <tbody id="menuTableBody">
-              <tr><td colspan="6" class="table-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</td></tr>
+              <tr><td colspan="6" class="table-loading">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+              </td></tr>
             </tbody>
           </table>
         </div>
@@ -148,7 +185,9 @@
               </tr>
             </thead>
             <tbody id="feedbackTableBody">
-              <tr><td colspan="6" class="table-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</td></tr>
+              <tr><td colspan="6" class="table-loading">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+              </td></tr>
             </tbody>
           </table>
         </div>
@@ -224,16 +263,14 @@
   </div>
 
 
-  <!-- Supabase -->
+  <!-- Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- PLACEHOLDER: Replace with your Supabase project credentials -->
+  <!-- Supabase credentials — safe to expose (anon key is public by design) -->
+  <!-- PLACEHOLDER: Replace with your actual Supabase project values -->
   <script>
-    window.SUPABASE_URL  = 'https://upxnwieojlsfulmnwjvt.supabase.co';
-    window.SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVweG53aWVvamxzZnVsbW53anZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NDA3NzIsImV4cCI6MjA5OTIxNjc3Mn0.MOzfi665OtgJK8_10Q4J8NqKgPRaPu8a-5AbWjazJd0';
-
-    // PLACEHOLDER: Set a strong admin password
-    window.ADMIN_PASSWORD = 'mycoffee2025';
+    window.SUPABASE_URL  = 'https://YOUR_PROJECT_ID.supabase.co';
+    window.SUPABASE_ANON = 'YOUR_ANON_KEY';
   </script>
 
   <script src="js/admin.js"></script>
