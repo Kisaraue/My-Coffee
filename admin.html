@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Coffee — Admin Dashboard</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Admin Styles -->
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+  <!-- ========================================================
+       LOGIN GATE
+  ======================================================== -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <img src="assets/my_coffee.jpg" alt="My Coffee" class="login-logo" />
+      <h1 class="login-title">Admin Dashboard</h1>
+      <p class="login-sub">Enter the admin password to continue</p>
+      <div class="login-field">
+        <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" />
+      </div>
+      <button class="admin-btn admin-btn--primary login-submit" id="loginSubmitBtn">
+        <i class="fa-solid fa-lock"></i> Sign In
+      </button>
+      <p class="login-error" id="loginError"></p>
+    </div>
+  </div>
+
+
+  <!-- ========================================================
+       ADMIN APP (hidden until logged in)
+  ======================================================== -->
+  <div class="admin-app hidden" id="adminApp">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="assets/my_coffee.jpg" alt="My Coffee" />
+        <div>
+          <span class="sidebar-brand">My Coffee</span>
+          <span class="sidebar-role">Admin</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="sidebar-link active" data-panel="menu">
+          <i class="fa-solid fa-mug-hot"></i> Menu Items
+        </button>
+        <button class="sidebar-link" data-panel="feedback">
+          <i class="fa-solid fa-star"></i> Feedback
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" class="sidebar-link sidebar-link--small" target="_blank">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> View Site
+        </a>
+        <button class="sidebar-link sidebar-link--small" id="logoutBtn">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+      <!-- ======================================================
+           PANEL: MENU ITEMS
+      ====================================================== -->
+      <div class="admin-panel active" id="panel-menu">
+
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Menu Items</h2>
+            <p class="panel-sub">Add, edit, or remove drinks from your menu.</p>
+          </div>
+          <button class="admin-btn admin-btn--primary" id="addMenuItemBtn">
+            <i class="fa-solid fa-plus"></i> Add Item
+          </button>
+        </div>
+
+        <!-- Category filter tabs -->
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-filter="all">All</button>
+          <button class="admin-tab" data-filter="hot">Hot Coffee</button>
+          <button class="admin-tab" data-filter="iced">Iced Coffee</button>
+          <button class="admin-tab" data-filter="specials">Specials</button>
+        </div>
+
+        <!-- Menu items table -->
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="menuTable">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Featured</th>
+                <th>Available</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="menuTableBody">
+              <tr><td colspan="6" class="table-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+
+      <!-- ======================================================
+           PANEL: FEEDBACK
+      ====================================================== -->
+      <div class="admin-panel" id="panel-feedback">
+
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Customer Feedback</h2>
+            <p class="panel-sub">Approve reviews to show them on the website.</p>
+          </div>
+          <div class="feedback-filter-wrap">
+            <button class="admin-tab active" data-fb-filter="pending">Pending</button>
+            <button class="admin-tab" data-fb-filter="approved">Approved</button>
+            <button class="admin-tab" data-fb-filter="all">All</button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="feedbackTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Review</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="feedbackTableBody">
+              <tr><td colspan="6" class="table-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+
+  <!-- ========================================================
+       MODAL: Add / Edit Menu Item
+  ======================================================== -->
+  <div class="modal-overlay hidden" id="menuItemModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Add Menu Item</h3>
+        <button class="modal-close" id="modalCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editItemId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label>Drink Name *</label>
+            <input type="text" id="itemName" placeholder="e.g. Iced Caramel Latte" maxlength="80" />
+          </div>
+          <div class="form-group">
+            <label>Emoji</label>
+            <input type="text" id="itemEmoji" placeholder="☕" maxlength="4" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description *</label>
+          <input type="text" id="itemDesc" placeholder="e.g. Sweet, creamy, and dangerously good" maxlength="120" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Price (Rs.) *</label>
+            <input type="number" id="itemPrice" placeholder="350" min="1" max="9999" />
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select id="itemCategory">
+              <option value="hot">Hot Coffee</option>
+              <option value="iced">Iced Coffee</option>
+              <option value="specials">Specials</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" id="itemOrder" placeholder="1" min="0" max="99" />
+          </div>
+        </div>
+        <div class="form-row form-row--checks">
+          <label class="check-label">
+            <input type="checkbox" id="itemAvailable" checked />
+            <span>Available</span>
+          </label>
+          <label class="check-label">
+            <input type="checkbox" id="itemFeatured" />
+            <span>Today's Special (ribbon badge)</span>
+          </label>
+        </div>
+        <p class="modal-error hidden" id="modalError"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="admin-btn admin-btn--ghost" id="modalCancelBtn">Cancel</button>
+        <button class="admin-btn admin-btn--primary" id="modalSaveBtn">
+          <i class="fa-solid fa-floppy-disk"></i> Save Item
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- PLACEHOLDER: Replace with your Supabase project credentials -->
+  <script>
+    window.SUPABASE_URL  = 'https://YOUR_PROJECT_ID.supabase.co';
+    window.SUPABASE_ANON = 'YOUR_ANON_KEY';
+
+    // PLACEHOLDER: Set a strong admin password
+    window.ADMIN_PASSWORD = 'mycoffee2025';
+  </script>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -59,6 +59,7 @@
         <li><a href="#menu" class="nav-link">Menu</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#feedback" class="nav-link">Reviews</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
@@ -93,6 +94,7 @@
         <li><a href="#menu" class="mobile-link">Menu</a></li>
         <li><a href="#about" class="mobile-link">About</a></li>
         <li><a href="#gallery" class="mobile-link">Gallery</a></li>
+        <li><a href="#feedback" class="mobile-link">Reviews</a></li>
         <li><a href="#contact" class="mobile-link">Contact</a></li>
         <!-- PLACEHOLDER: Replace WhatsApp number -->
         <li><a href="https://wa.me/94XXXXXXXXXX" class="mobile-link mobile-cta" target="_blank" rel="noopener">Order on WhatsApp</a></li>
@@ -211,7 +213,7 @@
 
 
   <!-- ============================================================
-       SECTION 4: MENU
+       SECTION 4: MENU (Dynamic — loaded from Supabase)
   ============================================================ -->
   <section class="menu-section section-padding" id="menu">
     <div class="container">
@@ -233,161 +235,24 @@
         </button>
       </div>
 
-      <!-- HOT COFFEE TAB -->
+      <!-- HOT COFFEE TAB — populated by JS -->
       <div class="menu-tab-content active" id="tab-hot" role="tabpanel">
-        <div class="menu-grid">
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">☕</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Espresso</h3>
-              <p class="menu-card-desc">Bold single shot, pure and powerful</p>
-              <span class="menu-card-price">Rs. 250</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">☕</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Americano</h3>
-              <p class="menu-card-desc">Espresso with hot water, smooth and clean</p>
-              <span class="menu-card-price">Rs. 290</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">☕</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Flat White</h3>
-              <p class="menu-card-desc">Velvety microfoam over a double shot</p>
-              <span class="menu-card-price">Rs. 350</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">☕</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Cappuccino</h3>
-              <p class="menu-card-desc">Equal parts espresso, steam, and foam</p>
-              <span class="menu-card-price">Rs. 350</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">☕</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Latte</h3>
-              <p class="menu-card-desc">Creamy and smooth, perfect any time of day</p>
-              <span class="menu-card-price">Rs. 380</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">☕</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Mocha</h3>
-              <p class="menu-card-desc">Chocolate meets espresso in the best way</p>
-              <span class="menu-card-price">Rs. 400</span>
-            </div>
-          </div>
-
+        <div class="menu-grid" id="menu-grid-hot">
+          <div class="menu-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading menu...</div>
         </div>
       </div>
 
-      <!-- ICED COFFEE TAB -->
+      <!-- ICED COFFEE TAB — populated by JS -->
       <div class="menu-tab-content" id="tab-iced" role="tabpanel">
-        <div class="menu-grid">
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🧊</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Iced Latte</h3>
-              <p class="menu-card-desc">Chilled espresso in cold milk over ice</p>
-              <span class="menu-card-price">Rs. 420</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🧊</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Cold Brew</h3>
-              <p class="menu-card-desc">Slow-steeped for 12 hours, never bitter</p>
-              <span class="menu-card-price">Rs. 450</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🧊</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Iced Mocha</h3>
-              <p class="menu-card-desc">Chocolate, espresso, cold milk, ice</p>
-              <span class="menu-card-price">Rs. 450</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🧊</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Iced Caramel Latte</h3>
-              <p class="menu-card-desc">Sweet, creamy, and dangerously good</p>
-              <span class="menu-card-price">Rs. 470</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🧊</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Iced Matcha Latte</h3>
-              <p class="menu-card-desc">Japanese matcha meets cold milk</p>
-              <span class="menu-card-price">Rs. 430</span>
-            </div>
-          </div>
-
+        <div class="menu-grid" id="menu-grid-iced">
+          <div class="menu-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading menu...</div>
         </div>
       </div>
 
-      <!-- SPECIALS TAB -->
+      <!-- SPECIALS TAB — populated by JS -->
       <div class="menu-tab-content" id="tab-specials" role="tabpanel">
-        <div class="menu-grid">
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🥥</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Coconut Cold Brew</h3>
-              <p class="menu-card-desc">Cold brew with fresh coconut milk — Sri Lankan twist</p>
-              <span class="menu-card-price">Rs. 480</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🌿</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Spiced Latte</h3>
-              <p class="menu-card-desc">Ceylon cinnamon and cardamom warm latte</p>
-              <span class="menu-card-price">Rs. 420</span>
-            </div>
-          </div>
-
-          <!-- "Today's Special" badge on My Coffee Special -->
-          <div class="menu-card menu-card--featured animate-on-scroll">
-            <div class="menu-ribbon">Today's Special</div>
-            <div class="menu-card-icon">⭐</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">My Coffee Special</h3>
-              <p class="menu-card-desc">The house blend you'll keep coming back for</p>
-              <span class="menu-card-price">Rs. 500</span>
-            </div>
-          </div>
-
-          <div class="menu-card animate-on-scroll">
-            <div class="menu-card-icon">🍨</div>
-            <div class="menu-card-body">
-              <h3 class="menu-card-name">Affogato</h3>
-              <p class="menu-card-desc">Vanilla ice cream drowned in hot espresso</p>
-              <span class="menu-card-price">Rs. 490</span>
-            </div>
-          </div>
-
+        <div class="menu-grid" id="menu-grid-specials">
+          <div class="menu-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading menu...</div>
         </div>
       </div>
 
@@ -525,7 +390,76 @@
 
 
   <!-- ============================================================
-       SECTION 7: ORDER / CONTACT
+       SECTION 7: CUSTOMER FEEDBACK
+  ============================================================ -->
+  <section class="feedback-section section-padding" id="feedback">
+    <div class="container">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">What Our <span class="text-orange">Customers Say</span></h2>
+        <p class="section-subtitle">Real people, real cups, real love.</p>
+      </div>
+
+      <div class="feedback-layout">
+
+        <!-- Left: Submit Form -->
+        <div class="feedback-form-wrap animate-on-scroll">
+          <div class="feedback-form-card">
+            <h3 class="feedback-form-title">Leave a Review</h3>
+            <p class="feedback-form-sub">Tried our coffee? Tell us what you think.</p>
+
+            <!-- Star Rating -->
+            <div class="star-rating-wrap">
+              <p class="star-label">Your Rating</p>
+              <div class="star-rating" id="starRating" role="group" aria-label="Rating">
+                <span class="star" data-value="1" role="radio" aria-label="1 star" tabindex="0">★</span>
+                <span class="star" data-value="2" role="radio" aria-label="2 stars" tabindex="0">★</span>
+                <span class="star" data-value="3" role="radio" aria-label="3 stars" tabindex="0">★</span>
+                <span class="star" data-value="4" role="radio" aria-label="4 stars" tabindex="0">★</span>
+                <span class="star" data-value="5" role="radio" aria-label="5 stars" tabindex="0">★</span>
+              </div>
+              <input type="hidden" id="ratingValue" value="0" />
+            </div>
+
+            <div class="feedback-fields">
+              <div class="feedback-field">
+                <label for="feedbackName">Your Name</label>
+                <input type="text" id="feedbackName" placeholder="e.g. Kasun P." maxlength="60" />
+              </div>
+              <div class="feedback-field">
+                <label for="feedbackMessage">Your Review</label>
+                <textarea id="feedbackMessage" placeholder="Tell us about your experience..." maxlength="400" rows="4"></textarea>
+              </div>
+            </div>
+
+            <button class="btn btn-primary feedback-submit-btn" id="feedbackSubmitBtn">
+              <i class="fa-solid fa-paper-plane"></i> Submit Review
+            </button>
+
+            <!-- Status messages -->
+            <div class="feedback-status" id="feedbackStatus"></div>
+          </div>
+        </div>
+
+        <!-- Right: Approved Reviews -->
+        <div class="feedback-reviews-wrap animate-on-scroll">
+          <div class="feedback-reviews-header">
+            <h3 class="feedback-reviews-title">Recent Reviews</h3>
+            <span class="feedback-reviews-note">Showing approved reviews</span>
+          </div>
+          <div class="feedback-reviews-list" id="feedbackReviewsList">
+            <div class="feedback-reviews-loading">
+              <i class="fa-solid fa-spinner fa-spin"></i> Loading reviews...
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 8: ORDER / CONTACT
   ============================================================ -->
   <section class="contact-section section-padding" id="contact">
     <div class="container">
@@ -642,6 +576,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#feedback">Reviews</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
@@ -690,6 +625,15 @@
     </div>
   </footer>
 
+
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Supabase Config — PLACEHOLDER: Replace with your project values -->
+  <script>
+    window.SUPABASE_URL  = 'https://YOUR_PROJECT_ID.supabase.co';
+    window.SUPABASE_ANON = 'YOUR_ANON_KEY';
+  </script>
 
   <!-- Site JavaScript -->
   <script src="js/main.js"></script>
