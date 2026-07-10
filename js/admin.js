@@ -28,8 +28,17 @@ window.addEventListener('load', function () {
   try {
     _supabase = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON, {
       auth: {
-        persistSession: true,        // keep session in localStorage
-        autoRefreshToken: true       // refresh JWT before expiry
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      },
+      global: {
+        headers: {},
+      },
+      // Tolerate up to 300 seconds of clock skew between client and server
+      // This fixes "JWT issued at future" errors caused by system clock drift
+      db: {
+        schema: 'public'
       }
     });
     initLoginUI();
