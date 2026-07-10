@@ -344,3 +344,301 @@
     });
   }
 })();
+
+/* ============================================================
+   10. SUPABASE CLIENT INIT
+   Runs after DOM + all scripts are fully loaded
+   ============================================================ */
+window.addEventListener('load', function () {
+  if (!window.SUPABASE_URL || window.SUPABASE_URL.includes('YOUR_PROJECT')) {
+    console.warn('My Coffee: Supabase credentials not set.');
+    showMenuFallback();
+    return;
+  }
+
+  if (typeof supabase === 'undefined') {
+    console.error('My Coffee: Supabase CDN script did not load.');
+    showMenuFallback();
+    return;
+  }
+
+  try {
+    window._supabase = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON);
+    console.log('My Coffee: Supabase client ready.');
+    loadMenuFromSupabase();
+    loadFeedbackReviews();
+  } catch (e) {
+    console.error('My Coffee: Supabase init failed:', e);
+    showMenuFallback();
+  }
+});
+
+function showMenuFallback() {
+  ['hot', 'iced', 'specials'].forEach(function (cat) {
+    var grid = document.getElementById('menu-grid-' + cat);
+    if (grid) grid.innerHTML = '<div class="menu-error">⚠️ Could not connect to database. Please check configuration.</div>';
+  });
+  var list = document.getElementById('feedbackReviewsList');
+  if (list) list.innerHTML = '<div class="feedback-reviews-empty">Could not load reviews.</div>';
+}
+
+
+/* ============================================================
+   11. DYNAMIC MENU — load from Supabase menu_items table
+   ============================================================ */
+function loadMenuFromSupabase() {
+  var client = window._supabase;
+  if (!client) return;
+
+  var grids = {
+    hot:      document.getElementById('menu-grid-hot'),
+    iced:     document.getElementById('menu-grid-iced'),
+    specials: document.getElementById('menu-grid-specials')
+  };
+
+  console.log('My Coffee: Fetching menu items...');
+
+  client
+    .from('menu_items')
+    .select('*')
+    .order('display_order', { ascending: true })
+    .then(function (result) {
+      var data  = result.data;
+      var error = result.error;
+
+      console.log('My Coffee menu result:', { data: data, error: error });
+
+      if (error) {
+        console.error('My Coffee menu error:', error.message, error.details, error.hint);
+        ['hot', 'iced', 'specials'].forEach(function (cat) {
+          if (grids[cat]) grids[cat].innerHTML =
+            '<div class="menu-error">⚠️ ' + error.message + '</div>';
+        });
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.warn('My Coffee: menu_items table returned 0 rows. Check that the SQL seed ran and RLS allows SELECT.');
+        ['hot', 'iced', 'specials'].forEach(function (cat) {
+          if (grids[cat]) grids[cat].innerHTML =
+            '<div class="menu-empty">No menu items found. Run supabase_setup.sql to seed data.</div>';
+        });
+        return;
+      }
+
+      console.log('My Coffee: Loaded ' + data.length + ' menu items.');
+
+      // Filter to available only (client-side so we can debug count above)
+      var available = data.filter(function (item) { return item.is_available !== false; });
+
+      // Group by category
+      var grouped = { hot: [], iced: [], specials: [] };
+      available.forEach(function (item) {
+        if (grouped[item.category]) grouped[item.category].push(item);
+      });
+
+      // Render each category
+      ['hot', 'iced', 'specials'].forEach(function (cat) {
+        var grid  = grids[cat];
+        if (!grid) return;
+        var items = grouped[cat];
+
+        if (!items.length) {
+          grid.innerHTML = '<div class="menu-empty">No items in this category yet.</div>';
+          return;
+        }
+
+        grid.innerHTML = items.map(function (item) {
+          var featuredClass = item.is_featured ? ' menu-card--featured' : '';
+          var ribbon        = item.is_featured ? '<div class="menu-ribbon">Today\'s Special</div>' : '';
+          return (
+            '<div class="menu-card' + featuredClass + ' animate-on-scroll visible">' +
+              ribbon +
+              '<div class="menu-card-icon">' + (item.emoji || '☕') + '</div>' +
+              '<div class="menu-card-body">' +
+                '<h3 class="menu-card-name">' + escapeHtml(item.name) + '</h3>' +
+                '<p class="menu-card-desc">' + escapeHtml(item.description) + '</p>' +
+                '<span class="menu-card-price">Rs. ' + item.price + '</span>' +
+              '</div>' +
+            '</div>'
+          );
+        }).join('');
+      });
+    })
+    .catch(function (err) {
+      console.error('My Coffee: Unexpected menu fetch error:', err);
+    });
+}
+
+
+/* ============================================================
+   12. FEEDBACK — load approved reviews
+   ============================================================ */
+function loadFeedbackReviews() {
+  var client = window._supabase;
+  var list   = document.getElementById('feedbackReviewsList');
+  if (!client || !list) return;
+
+  console.log('My Coffee: Fetching approved reviews...');
+
+  client
+    .from('feedbacks')
+    .select('*')
+    .eq('approved', true)
+    .order('created_at', { ascending: false })
+    .limit(20)
+    .then(function (result) {
+      var data  = result.data;
+      var error = result.error;
+
+      console.log('My Coffee feedback result:', { data: data, error: error });
+
+      if (error) {
+        console.error('My Coffee feedback error:', error.message, error.hint);
+        list.innerHTML = '<div class="feedback-reviews-empty">Unable to load reviews: ' + error.message + '</div>';
+        return;
+      }
+
+      if (!data || !data.length) {
+        list.innerHTML = '<div class="feedback-reviews-empty">No reviews yet — be the first! ☕</div>';
+        return;
+      }
+
+      list.innerHTML = data.map(function (review) {
+        var stars = '';
+        for (var i = 1; i <= 5; i++) {
+          stars += i <= review.rating ? '★' : '☆';
+        }
+        var date = new Date(review.created_at).toLocaleDateString('en-US', {
+          year: 'numeric', month: 'short', day: 'numeric'
+        });
+        return (
+          '<div class="review-card">' +
+            '<div class="review-card-header">' +
+              '<span class="review-card-name">' + escapeHtml(review.name) + '</span>' +
+              '<span class="review-card-stars">' + stars + '</span>' +
+            '</div>' +
+            '<p class="review-card-message">' + escapeHtml(review.message) + '</p>' +
+            '<span class="review-card-date">' + date + '</span>' +
+          '</div>'
+        );
+      }).join('');
+    });
+}
+
+
+/* ============================================================
+   13. FEEDBACK — submit new review
+   ============================================================ */
+(function initFeedbackForm() {
+  var starEls    = document.querySelectorAll('.star');
+  var ratingInput= document.getElementById('ratingValue');
+  var nameInput  = document.getElementById('feedbackName');
+  var msgInput   = document.getElementById('feedbackMessage');
+  var submitBtn  = document.getElementById('feedbackSubmitBtn');
+  var statusEl   = document.getElementById('feedbackStatus');
+
+  var selectedRating = 0;
+
+  // Star interaction
+  starEls.forEach(function (star) {
+    star.addEventListener('mouseover', function () {
+      var val = parseInt(star.getAttribute('data-value'));
+      highlightStars(val);
+    });
+
+    star.addEventListener('mouseout', function () {
+      highlightStars(selectedRating);
+    });
+
+    star.addEventListener('click', function () {
+      selectedRating = parseInt(star.getAttribute('data-value'));
+      if (ratingInput) ratingInput.value = selectedRating;
+      highlightStars(selectedRating);
+    });
+
+    star.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectedRating = parseInt(star.getAttribute('data-value'));
+        if (ratingInput) ratingInput.value = selectedRating;
+        highlightStars(selectedRating);
+      }
+    });
+  });
+
+  function highlightStars(count) {
+    starEls.forEach(function (s) {
+      var val = parseInt(s.getAttribute('data-value'));
+      s.classList.toggle('selected', val <= count);
+      s.classList.toggle('hovered', val <= count);
+    });
+  }
+
+  // Submit
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function () {
+      var client = window._supabase;
+
+      if (!client) {
+        setStatus('Supabase not configured yet. Add your credentials to index.html.', 'error');
+        return;
+      }
+
+      var name    = nameInput  ? nameInput.value.trim()  : '';
+      var message = msgInput   ? msgInput.value.trim()   : '';
+      var rating  = selectedRating;
+
+      // Validation
+      if (!name)    { setStatus('Please enter your name.', 'error'); nameInput.focus(); return; }
+      if (!rating)  { setStatus('Please select a star rating.', 'error'); return; }
+      if (!message) { setStatus('Please write a review message.', 'error'); msgInput.focus(); return; }
+      if (message.length < 10) { setStatus('Your review is too short (min 10 characters).', 'error'); return; }
+
+      submitBtn.disabled   = true;
+      submitBtn.innerHTML  = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+      setStatus('', '');
+
+      client
+        .from('feedbacks')
+        .insert([{ name: name, rating: rating, message: message, approved: false }])
+        .then(function (result) {
+          submitBtn.disabled  = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Review';
+
+          if (result.error) {
+            setStatus('Something went wrong. Please try again.', 'error');
+            return;
+          }
+
+          // Success — reset form
+          setStatus('✅ Thank you! Your review is pending approval.', 'success');
+          nameInput.value  = '';
+          msgInput.value   = '';
+          selectedRating   = 0;
+          if (ratingInput) ratingInput.value = 0;
+          highlightStars(0);
+        });
+    });
+  }
+
+  function setStatus(msg, type) {
+    if (!statusEl) return;
+    statusEl.textContent  = msg;
+    statusEl.className    = 'feedback-status' + (type ? ' ' + type : '');
+  }
+})();
+
+
+/* ============================================================
+   14. UTILITY — HTML escape for user content
+   ============================================================ */
+function escapeHtml(str) {
+  if (typeof str !== 'string') return '';
+  return str
+    .replace(/&/g,  '&amp;')
+    .replace(/</g,  '&lt;')
+    .replace(/>/g,  '&gt;')
+    .replace(/"/g,  '&quot;')
+    .replace(/'/g,  '&#039;');
+}
